@@ -4,13 +4,18 @@
 
 #include <re.h>
 #include <parser.h>
+#include <iostream>
 
 namespace regex {
 
 re::re(string r) {
   parser p{lexer(r)};
   ast a;
-  p.regex(a);
+  try {
+    p.regex(a);
+  } catch (base_error& e) {
+    std::cerr << e.what();
+  }
   n = std::move(nfa(a));
 }
 
