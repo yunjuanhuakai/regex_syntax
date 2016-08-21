@@ -21,9 +21,12 @@ using std::ostream;
 using std::make_unique;
 using std::iterator;
 using std::forward_iterator_tag;
-using AstPtr = unique_ptr<ast>;
-using AstPtrs = vector<AstPtr>;
+// using AstPtr =  unique_ptr<ast>;
+using Asts = vector<ast>;
+using ast_iterator = Asts::iterator;
+using ast_const_iterator = Asts::const_iterator;
 
+/*
 struct ast_iterator
     : iterator<forward_iterator_tag, ast> {
   using _Self = ast_iterator;
@@ -61,7 +64,7 @@ struct ast_const_iterator
  private:
   AstPtrs::const_iterator iter_;
 };
-
+*/
 struct ast {
   ast() noexcept;
   explicit ast(token const &t) noexcept;
@@ -106,9 +109,8 @@ struct ast {
 
   bool is_null_ = false;
   token t_;
-  AstPtrs children_;
+  Asts children_;
 };
-
 
 }
 
