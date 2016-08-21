@@ -29,11 +29,11 @@ void ast::clear() noexcept {
 }
 
 ast &ast::operator[](size_t i) noexcept {
-  return *children_[i];
+  return children_[i];
 }
 
 ast const &ast::operator[](size_t i) const noexcept {
-  return *children_[i];
+  return children_[i];
 }
 
 
@@ -62,20 +62,19 @@ size_t ast::size() const noexcept {
 
 void ast::emplace_child(token const &t) {
   this->is_null_ = false;
-  children_.emplace_back(
-      make_unique<ast>(t));
+  children_.emplace_back(t);
 }
 
 void ast::push_child(ast &&a) {
   this->is_null_ = false;
 
-  AstPtr item;
+  ast item;
 
   if (/*(*/a.t_.is(mTAG::CONCAT) /*|| a.t_.is(mTAG::Or))*/ && a.children_.size() == 1) {
-    item = std::move(a.children_[0]);
+    item.swap(a.children_[0]);
     a.clear();
   } else {
-    item = std::make_unique<ast>(std::move(a));
+    item.swap(a);
   }
 
   children_.push_back(std::move(item));
@@ -84,12 +83,12 @@ void ast::push_child(ast &&a) {
 }
 
 ast &ast::last() noexcept {
-  return *children_.back();
+  return children_.back();
 }
 
 ast const &ast::last()
 const noexcept {
-  return *children_.back();
+  return children_.back();
 }
 
 void ast::swap(ast &a) {
@@ -146,9 +145,9 @@ string ast::_to_string_tree(int i) const {
 
   auto beg = children_.begin();
   while (beg != children_.end() - 1) {
-    buf << (*beg++)->_to_string_tree(i + 1) << '\n';
+    buf << (beg++)->_to_string_tree(i + 1) << '\n';
   }
-  buf << (*beg)->_to_string_tree(i + 1);
+  buf << beg->_to_string_tree(i + 1);
 
   if (!null()) buf << ')';
 
@@ -156,7 +155,7 @@ string ast::_to_string_tree(int i) const {
 }
 
 }
-
+/*
 namespace regex {
 
 ast_iterator::ast_iterator(AstPtrs::iterator iter)
@@ -216,3 +215,4 @@ bool ast_const_iterator::operator!=(_Self const &rhs) const noexcept {
 }
 
 }
+*/
