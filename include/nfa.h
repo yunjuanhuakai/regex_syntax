@@ -72,7 +72,7 @@ struct nfa {
   state_set const &set() const;
   // _RegexMap map_;
   // _Mat mat_;
-  void print(ostream &);
+  void print(ostream &) const;
  private:
   state_id distribution(ast const &);
 

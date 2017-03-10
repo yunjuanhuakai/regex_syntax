@@ -8,4 +8,5 @@ include_directories(include/)
 
 file(GLOB SOURCE_FILES include/*.h src/*.cpp)
 
-add_executable(regex_syntax ${SOURCE_FILES} test.cpp)
+add_executable(regex_syntax ${SOURCE_FILES} main.cpp)
+add_executable(regex_syntax_test ${SOURCE_FILES} test.cpp)

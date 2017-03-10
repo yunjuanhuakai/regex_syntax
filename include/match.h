@@ -20,10 +20,14 @@ struct match {
 
  private:
   void _dfs(iter_t cur, state_id id);
+  void print_match(iter_t cur);
+  size_t end(iter_t cur);
 
   bool match_ = true;
 
+  size_t start_;
   state_set const &set_;
+  string const& str;
   iter_t end_;
 };
 

@@ -1,0 +1,4 @@
+/home/makai/learn/c++/regex_syntax/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/makai/learn/c++/regex_syntax/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/makai/learn/c++/regex_syntax/cmake-build-debug/CMakeFiles/regex_syntax_test.dir
+/home/makai/learn/c++/regex_syntax/cmake-build-debug/CMakeFiles/regex_syntax.dir

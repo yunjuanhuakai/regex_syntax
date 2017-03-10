@@ -40,7 +40,7 @@ struct alt_match {
 
   void _not() noexcept { res_ = false; }
 
-  bool operator()(bool c) const noexcept {
+  bool operator()(char c) const noexcept {
     for (auto &func : func_set)
       if (func(c))
         return res_;
@@ -58,7 +58,7 @@ struct set_match {
     set_.insert(c);
   }
 
-  bool operator()(bool c) const noexcept {
+  bool operator()(char c) const noexcept {
     return set_.find(c) != set_.end();
   }
 
@@ -66,7 +66,7 @@ struct set_match {
 };
 
 struct any_match {
-  bool operator()(bool c) const noexcept {
+  bool operator()(char c) const noexcept {
     return true;
   }
 };
@@ -277,7 +277,7 @@ state_id nfa::base_join(state_id s, state_id next) {
   return next;
 }
 
-void nfa::print(ostream &os) {
+void nfa::print(ostream &os) const {
   for (int i = 0; i != set_.size(); ++i)
     os << i << ": " << set_[i].to_string() << '\n';
 }
